@@ -30,9 +30,9 @@ public class Concentration {
     //Swap method to be used in scrambling
     public void swap(int x1, int y1, int x2, int y2){
 	String holder = ""; //to hold the place of first tile
-	holder = _board[x1][y1];
+	holder = _board[x1][y1].toString();
 	_board[x1][y1] = _board[x2][y2];
-	_board[x2][y2] = holder;
+	_board[x2][y2] = new Tile(holder);
     }
     public void scramble(){
 	for ( int x = 0; x < 30; x++){ //Swaps random cards around to scramble
