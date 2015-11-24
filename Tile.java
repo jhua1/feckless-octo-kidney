@@ -18,10 +18,11 @@ public class Tile {
  
     public void flip() { _isFaceUp = !_isFaceUp; }
 
+    public String getFace(){ return _face;}	
 		
     //override toString method
     public String toString() {
-	if ( !isFaceUp() )
+	if ( isFaceUp() )
 	    return _face;
 	else
 	    return "-X-";

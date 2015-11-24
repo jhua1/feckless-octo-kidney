@@ -1,5 +1,13 @@
+/*Team feckless-octo-kidney - James Hua, Ruochong Wu
+  APCS1 pd10
+  HW36 -- Some Folks Call It a Memory
+  2015-11-23
+*/
+
 import cs1.Keyboard;  //if comfortable with Scanner, you may comment this out
 
+/*The game works out fine. Only things that are not addressed includes when a person chooses a tile that is already matched and flipped over. The other thing is that the Scrambler requires the addition of the method getFace() to Tile which allows us to Scramble up the board.
+ */
 		
 public class Concentration {
 
@@ -14,7 +22,6 @@ public class Concentration {
     public Concentration(){
 	_board = new Tile[4][4];
 	_numberFaceUp = 0;
-	double count = 0;
     }
 
     public void populate(){
@@ -30,16 +37,16 @@ public class Concentration {
     //Swap method to be used in scrambling
     public void swap(int x1, int y1, int x2, int y2){
 	String holder = ""; //to hold the place of first tile
-	holder = _board[x1][y1].toString();
+	holder = _board[x1][y1].getFace();
 	_board[x1][y1] = _board[x2][y2];
 	_board[x2][y2] = new Tile(holder);
     }
     public void scramble(){
-	for ( int x = 0; x < 30; x++){ //Swaps random cards around to scramble
-	    int a = (int)(Math.random()*3);
-	    int b = (int)(Math.random()*3);
-	    int m = (int)(Math.random()*3);
-	    int n = (int)(Math.random()*3);
+	for ( int x = 0; x < 50; x++){ //Swaps random cards around to scramble
+	    int a = (int)(Math.random()*4);
+	    int b = (int)(Math.random()*4);
+	    int m = (int)(Math.random()*4);
+	    int n = (int)(Math.random()*4);
 	    swap(a,b,m,n);
 	}
     }
@@ -47,7 +54,7 @@ public class Concentration {
     public void print() { 
         for (Tile[] x : _board){             //For each row
 	    for (Tile y : x){          //For each int
-		System.out.print(y.toString()+" ");
+		System.out.print(y.toString()+"\t ");
 	    }
 	    System.out.print("\n");
 	}
@@ -65,8 +72,49 @@ public class Concentration {
 	}
     }
 
+    //Method for each turn when you flip two tiles
+    public void turn(){
+	System.out.println("Here is your board");
+	print();
+	System.out.println("Choose a tile");
+	//Choosing first tile
+	System.out.println("Pick a row and column");
+	int x1 = 0;
+	int y1 = 0;
+	x1 = Keyboard.readInt();
+	y1 = Keyboard.readInt();
+        _board[x1][y1].flip(); 
+	print(); //Showing the tile that is chosen
+	
+	System.out.println("Choose another tile");
+	//Choosing second tile
+	System.out.println("Pick a row and column");
+	int x2 = 0;
+	int y2 = 0;
+	x2 = Keyboard.readInt();
+	y2 = Keyboard.readInt();
+	_board[x2][y2].flip();
+	print();
+	
+	if (_board[x1][y1].equals(_board[x2][y2])){
+	    System.out.println("Successful match");
+	    _numberFaceUp += 2;
+	}
+	else{
+	    System.out.println("No match");
+	    _board[x1][y1].flip();
+	    _board[x2][y2].flip();
+	}
+    }
+	    
     public void play(){
 	randomize(_words);
+	populate();
+	scramble();
+	while (_numberFaceUp < 16){
+	    turn();
+	}
+	System.out.println("Congragulations You Win!"); //This is only if you match all 16
     }
 	
 
@@ -74,14 +122,8 @@ public class Concentration {
 		
     //DO NOT MODIFY main()
     public static void main(String[] args){
-	Concentration test = new Concentration();
-	test.play();
-	test.populate();
-	test.print();
-	test.scramble();
-	test.print();
-	//	Concentration game = new Concentration();
-	//	game.play();
+	Concentration game = new Concentration();
+       	game.play();
     }
 
 }//end class Concentration
