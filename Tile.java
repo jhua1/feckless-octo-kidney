@@ -21,7 +21,7 @@ public class Tile {
 		
     //override toString method
     public String toString() {
-	if ( isFaceUp() )
+	if ( !isFaceUp() )
 	    return _face;
 	else
 	    return "-X-";

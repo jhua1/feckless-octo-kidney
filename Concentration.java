@@ -15,12 +15,6 @@ public class Concentration {
 	_board = new Tile[4][4];
 	_numberFaceUp = 0;
 	double count = 0;
-	//	for (Tile[] x : _board){
-	//	    for (Tile y : x){
-	//	y = new Tile(_words[(int)count]);
-	//	count += 0.5;
-	//	    }
-	//	}
     }
 
     public void populate(){
@@ -41,10 +35,30 @@ public class Concentration {
 	    System.out.print("\n");
 	}
     }
+
+
+    public void randomize(String[] x){
+	int count = 0;
+	while (count< x.length){
+	    String bck = x[count];
+	    int ran = (int)(Math.random()*(x.length - 1));
+	    x[count] = x[ran];
+	    x[ran] = bck;
+	    count++;
+	}
+    }
+
+    public void play(){
+	randomize(_words);
+    }
+	
+
+	
 		
     //DO NOT MODIFY main()
     public static void main(String[] args){
 	Concentration test = new Concentration();
+	test.play();
 	test.populate();
 	test.print();
 	//	Concentration game = new Concentration();
