@@ -27,6 +27,23 @@ public class Concentration {
 	}
     }
 
+    //Swap method to be used in scrambling
+    public void swap(int x1, int y1, int x2, int y2){
+	String holder = ""; //to hold the place of first tile
+	holder = _board[x1][y1];
+	_board[x1][y1] = _board[x2][y2];
+	_board[x2][y2] = holder;
+    }
+    public void scramble(){
+	for ( int x = 0; x < 30; x++){ //Swaps random cards around to scramble
+	    int a = (int)(Math.random()*3);
+	    int b = (int)(Math.random()*3);
+	    int m = (int)(Math.random()*3);
+	    int n = (int)(Math.random()*3);
+	    swap(a,b,m,n);
+	}
+    }
+    
     public void print() { 
         for (Tile[] x : _board){             //For each row
 	    for (Tile y : x){          //For each int
@@ -60,6 +77,8 @@ public class Concentration {
 	Concentration test = new Concentration();
 	test.play();
 	test.populate();
+	test.print();
+	test.scramble();
 	test.print();
 	//	Concentration game = new Concentration();
 	//	game.play();
