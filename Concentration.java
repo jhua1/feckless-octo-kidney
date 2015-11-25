@@ -83,28 +83,35 @@ public class Concentration {
 	int y1 = 0;
 	x1 = Keyboard.readInt();
 	y1 = Keyboard.readInt();
-        _board[x1][y1].flip(); 
-	print(); //Showing the tile that is chosen
+	if (!_board[x1][y1].isFaceUp()){
+
+	    _board[x1][y1].flip(); 
+	    print(); //Showing the tile that is chosen
 	
-	System.out.println("Choose another tile");
-	//Choosing second tile
-	System.out.println("Pick a row and column");
-	int x2 = 0;
-	int y2 = 0;
-	x2 = Keyboard.readInt();
-	y2 = Keyboard.readInt();
-	_board[x2][y2].flip();
-	print();
+	    System.out.println("Choose another tile");
+	    //Choosing second tile
+	    System.out.println("Pick a row and column");
+	    int x2 = 0;
+	    int y2 = 0;
+	    x2 = Keyboard.readInt();
+	    y2 = Keyboard.readInt();
+	    if (!_board[x2][y2].isFaceUp()){		
+		_board[x2][y2].flip();
+		print();
 	
-	if (_board[x1][y1].equals(_board[x2][y2])){
-	    System.out.println("Successful match");
-	    _numberFaceUp += 2;
+		if (_board[x1][y1].equals(_board[x2][y2])){
+		    System.out.println("Successful match");
+		    _numberFaceUp += 2;
+		}
+		else{
+		    System.out.println("No match");
+		    _board[x1][y1].flip();
+		    _board[x2][y2].flip();
+		}
+	    }
+	    else {System.out.println("Your Tile is already flipped over");}
 	}
-	else{
-	    System.out.println("No match");
-	    _board[x1][y1].flip();
-	    _board[x2][y2].flip();
-	}
+	else{System.out.println("This Tile is already flipped over");}
     }
 	    
     public void play(){
