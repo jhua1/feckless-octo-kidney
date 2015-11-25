@@ -1,8 +1,7 @@
-/*Team feckless-octo-kidney - James Hua, Ruochong Wu
-  APCS1 pd10
-  HW36 -- Some Folks Call It a Memory
-  2015-11-23
-*/
+// Team LameNameBoyz -- Elias Milborn, James Hua
+// APCS Pd10
+// HW37 -- Rational Equality
+// 2015-11-25
 
 import cs1.Keyboard;  //if comfortable with Scanner, you may comment this out
 
